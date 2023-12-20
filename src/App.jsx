@@ -1,3 +1,5 @@
+import * as React from 'react';
+import Button from '@mui/material/Button';
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -18,9 +20,10 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+      <Button variant="contained" onClick={() => setCount((count) => count + 1)}>+1</Button>
+        <p>
           count is {count}
-        </button>
+        </p>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
