@@ -1,0 +1,13 @@
+.boton-sticky {
+    position: sticky !important;
+    top: 90vh;
+    visibility: inherit;
+}
+.categorias {
+    display:flex;
+    top: 20px;
+    width: 120px;
+}
+.invisible {
+    display: none !important;
+}
