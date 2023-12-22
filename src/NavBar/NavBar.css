@@ -11,3 +11,7 @@
 .invisible {
     display: none !important;
 }
+.float-right {
+    position: absolute;
+    right:0;
+}
