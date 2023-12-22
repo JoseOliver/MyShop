@@ -10,11 +10,13 @@ import Slide from '@mui/material/Slide';
 import { List, ListItemButton, ListItemText, Fab, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import KeyboardArrowUpIcon from '@mui/icons-material/ArrowUpward'
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const NavBar = (props) => {
 
     const theme = useTheme();
     const is_sm = useMediaQuery(theme.breakpoints.up('sm'));
+    const navigate = useNavigate();
 
     function HideOnScroll(props) {
         const { children, window } = props;
@@ -50,12 +52,12 @@ const NavBar = (props) => {
             <AppBar>
                 <Toolbar className={is_sm?"":"invisible"}>
                         <List id='nav' component="nav" className='row menu'>
-                            <img id='logo' src={"logo_ico.ico"} className="logo" alt="logo" height={"70px"} />
-                            <ListItemButton id='home'>
+                            <img id='logo' src={"logo_ico.ico"} className="logo" alt="logo" height={"70px"} onClick={()=>navigate("/")} />
+                            <ListItemButton id='home' onClick={()=>navigate("/")} >
                                 <ListItemText primary="Home" />
                             </ListItemButton>
                             <hr />
-                            <ListItemButton id='categorias'>
+                            <ListItemButton id='categorias' onClick={()=>navigate("/categorias")} >
                                 <ListItemText primary="Categorias" />
                             </ListItemButton>
                         </List>

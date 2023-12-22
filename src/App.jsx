@@ -10,7 +10,6 @@ function App() {
   const [count, setCount] = useState(0);
   return (
     <>
-      <NavBar/>
       <h1>Vite + React</h1>
       <div className='col top-center'>
       <Button variant="contained" onClick={() => setCount((count) => count + 1)}>+1</Button>

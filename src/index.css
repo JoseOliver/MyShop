@@ -15,7 +15,6 @@
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100vh;
 }
 .col {
   display: flex;
@@ -44,4 +43,7 @@ body {
 .ocupa-mucho {
   width:90vw;
   height:1000px;
+}
+.navbar-wrap {
+  height: 50px;
 }
