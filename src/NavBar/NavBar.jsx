@@ -63,11 +63,11 @@ const NavBar = (props) => {
                 <Toolbar className={is_sm?"":"invisible"}>
                   <List id='nav' component="nav" className='row menu'>
                       <img id='logo' src={"logo_ico.ico"} className="logo" alt="logo" height={"70px"} onClick={()=>navigate("/")} />
-                      <ListItemButton id='home' onClick={()=>navigate("/")} >
+                      <ListItemButton id='home' onClick={()=>navigate("/MyShop/")} >
                           <ListItemText primary="Home" />
                       </ListItemButton>
                       <hr />
-                      <ListItemButton id='categorias' onClick={()=>navigate("/categorias")} >
+                      <ListItemButton id='categorias' onClick={()=>navigate("/MyShop/categorias")} >
                           <ListItemText primary="Categorias" />
                       </ListItemButton>
                   </List>

@@ -17,8 +17,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <NavBar />
       <div className='navbar-wrap'></div>
       <Routes>
-        <Route path="/" element={<App />}></Route>
-        <Route path="/categorias" element={<Categorias />}></Route>
+        <Route path="/MyShop/" element={<App />}></Route>
+        <Route path="/MyShop/categorias" element={<Categorias />}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
