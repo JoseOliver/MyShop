@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './NavBar.css';
 
 import AppBar from '@mui/material/AppBar';
@@ -7,10 +7,10 @@ import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
-import { List, ListItemButton, ListItemText, Fab, useMediaQuery, Avatar, IconButton, Menu, MenuItem, Box } from '@mui/material';
+import { List, ListItemButton, ListItemText, Fab, useMediaQuery, IconButton, Menu, MenuItem, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import KeyboardArrowUpIcon from '@mui/icons-material/ArrowUpward'
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AccountCircle } from '@mui/icons-material';
 
 const NavBar = (props) => {
@@ -49,7 +49,7 @@ const NavBar = (props) => {
           });
 
         return (
-            <Slide appear={false} direction="up" in={trigger}>
+            <Slide appear={false} direction="up" in={!perfilMenu && trigger}>
               {children}
             </Slide>
           );
@@ -62,14 +62,14 @@ const NavBar = (props) => {
             <AppBar>
                 <Toolbar className={is_sm?"":"invisible"}>
                   <List id='nav' component="nav" className='row menu'>
-                      <img id='logo' src={"logo_ico.ico"} className="logo" alt="logo" height={"70px"} onClick={()=>navigate("/")} />
-                      <ListItemButton id='home' onClick={()=>navigate("/MyShop/")} >
-                          <ListItemText primary="Home" />
-                      </ListItemButton>
-                      <hr />
-                      <ListItemButton id='categorias' onClick={()=>navigate("/MyShop/categorias")} >
-                          <ListItemText primary="Categorias" />
-                      </ListItemButton>
+                    <img id='logo' src={"logo_ico.ico"} className="logo" alt="logo" height={"70px"} onClick={()=>navigate("/")} />
+                    <ListItemButton id='home' onClick={()=>navigate("/MyShop/")} >
+                        <ListItemText primary="Home" />
+                    </ListItemButton>
+                    <hr />
+                    <ListItemButton id='categorias' onClick={()=>navigate("/MyShop/categorias")} >
+                        <ListItemText primary="Categorias" />
+                    </ListItemButton>
                   </List>
                   <Box className={"float-right"}>
                     <IconButton
@@ -80,11 +80,11 @@ const NavBar = (props) => {
                       onClick={handleOpenPerfilMenu}
                       color="inherit"
                     >
-                      <AccountCircle />
+                    <AccountCircle />
                     </IconButton>
                     <Menu
                       id="menu-appbar"
-                      // anchorEl={perfilContent}
+                      anchorEl={""}
                       anchorOrigin={{
                         vertical: 'top',
                         horizontal: 'right',
@@ -96,6 +96,7 @@ const NavBar = (props) => {
                       }}
                       open={perfilMenu}
                       onClose={handleClosePerfilMenu}
+                      
                     >
                       <MenuItem onClick={handleClosePerfilMenu} >Perfil</MenuItem>
                       <MenuItem onClick={handleClosePerfilMenu} >Configuración</MenuItem>
