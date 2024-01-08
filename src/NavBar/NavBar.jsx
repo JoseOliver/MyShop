@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './NavBar.css';
 
 import AppBar from '@mui/material/AppBar';
@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
-import { List, ListItemButton, ListItemText, Fab, useMediaQuery, IconButton, Menu, MenuItem, Box } from '@mui/material';
+import { List, ListItemButton, ListItemText, Fab, useMediaQuery, IconButton, Menu, MenuItem, Box, Divider } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import KeyboardArrowUpIcon from '@mui/icons-material/ArrowUpward'
 import { useNavigate } from 'react-router-dom';
@@ -19,6 +19,7 @@ const NavBar = (props) => {
     const is_sm = useMediaQuery(theme.breakpoints.up('sm'));
     const navigate = useNavigate();
     const [perfilMenu, setPerfilMenu] = useState(false);
+    const perfilButton = useRef();
 
     const handleOpenPerfilMenu = (event) => {
       setPerfilMenu(true);
@@ -28,7 +29,7 @@ const NavBar = (props) => {
       setPerfilMenu(false);
     };
 
-    function HideOnScroll(props) {
+    const HideOnScroll = (props) => {
         const { children, window } = props;
         const trigger = useScrollTrigger({
           target: window ? window() : undefined,
@@ -62,29 +63,33 @@ const NavBar = (props) => {
             <AppBar>
                 <Toolbar className={is_sm?"":"invisible"}>
                   <List id='nav' component="nav" className='row menu'>
-                    <img id='logo' src={"logo_ico.ico"} className="logo" alt="logo" height={"70px"} onClick={()=>navigate("/")} />
+                    <img id='logo' src={"logo_ico.ico"} className="logo" alt="logo" height={"70px"} onClick={()=>navigate("/MyShop/")} />
                     <ListItemButton id='home' onClick={()=>navigate("/MyShop/")} >
                         <ListItemText primary="Home" />
                     </ListItemButton>
-                    <hr />
+                    <Divider orientation="vertical" variant="middle" flexItem />
                     <ListItemButton id='categorias' onClick={()=>navigate("/MyShop/categorias")} >
                         <ListItemText primary="Categorias" />
                     </ListItemButton>
                   </List>
                   <Box className={"float-right"}>
                     <IconButton
+                      id='perfilButton'
                       size="large"
+                      ref={perfilButton}
                       aria-label="Perfil"
-                      aria-controls="menu-appbar"
+                      aria-controls="menu"
                       aria-haspopup="true"
                       onClick={handleOpenPerfilMenu}
                       color="inherit"
                     >
-                    <AccountCircle />
+                      <AccountCircle />
                     </IconButton>
                     <Menu
-                      id="menu-appbar"
-                      anchorEl={""}
+                      id="menu"
+                      // anchorReference='anchorPosition'
+                      // anchorPosition={{ top: 20, left: window.innerWidth}}
+                      anchorEl={perfilButton}
                       anchorOrigin={{
                         vertical: 'top',
                         horizontal: 'right',
@@ -95,8 +100,7 @@ const NavBar = (props) => {
                         horizontal: 'right',
                       }}
                       open={perfilMenu}
-                      onClose={handleClosePerfilMenu}
-                      
+                      onClose={handleClosePerfilMenu}                      
                     >
                       <MenuItem onClick={handleClosePerfilMenu} >Perfil</MenuItem>
                       <MenuItem onClick={handleClosePerfilMenu} >Configuración</MenuItem>
